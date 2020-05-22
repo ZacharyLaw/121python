@@ -17,6 +17,7 @@ tab=0
 swap={1:0,0:1}
 number_of_items=len(inventory['Name'])
 _ = system('cls') 
+print(cursor)
 print('        121 Supermarket POS\nInventory:')
 for row in range(number_of_items):
     if row==cursor:print('%-20s    $%3s'%('<'+inventory.loc[row,'Name']+'>',inventory.loc[row,'Price']))
@@ -29,10 +30,10 @@ while True:
     if choice in [b'H',b's',b'S'] and cursor!=0:cursor-=1#^
     elif choice in [b'P',b'w',b'W'] and cursor!=len(cart)-1 and tab:cursor+=1#V
     elif choice in [b'P',b'w',b'W'] and cursor!=number_of_items-1 and not tab:cursor+=1#V
-    elif choice==b'\t' and len(cart)>0:
+    elif choice==b'\t' and cart:
         tab=swap[tab]
-        if not tab and cursor>number_of_items:cursor=number_of_items
-        elif tab and cursor>len(cart):cursor=len(cart)
+        if not tab and cursor>number_of_items-1:cursor=number_of_items-1
+        elif tab and cursor>len(cart)-1:cursor=len(cart)-1
     elif choice==b' ' and not tab:
         cart.append(inventory.loc[cursor,'Name'])
         cred.append(int(inventory.loc[cursor,'Price']))
@@ -52,6 +53,8 @@ while True:
                 _ = system('cls') 
                 break
     elif choice ==b'q' or choice == b"\x1b":break
+    print(cursor)
+    
     print('        121 Supermarket POS\nInventory:')
     for row in range(number_of_items):
         if row==cursor and not tab:print('%-20s    $%3s'%('<'+inventory.loc[row,'Name']+'>',inventory.loc[row,'Price']))
