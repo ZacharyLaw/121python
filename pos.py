@@ -27,9 +27,9 @@ while True:
     choice=msvcrt.getch()
     if choice==b'\xe0':choice=msvcrt.getch()
     _ = system('cls') 
-    if choice in [b'H',b's',b'S'] and cursor!=0:cursor-=1#^
-    elif choice in [b'P',b'w',b'W'] and cursor!=len(cart)-1 and tab:cursor+=1#V
-    elif choice in [b'P',b'w',b'W'] and cursor!=number_of_items-1 and not tab:cursor+=1#V
+    if choice in [b'H',b'w',b'W'] and cursor!=0:cursor-=1#^
+    elif choice in [b'P',b's',b'S'] and cursor!=len(cart)-1 and tab:cursor+=1#V
+    elif choice in [b'P',b's',b'S'] and cursor!=number_of_items-1 and not tab:cursor+=1#V
     elif choice==b'\t' and cart:
         tab=swap[tab]
         if not tab and cursor>number_of_items-1:cursor=number_of_items-1
