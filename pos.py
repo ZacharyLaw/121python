@@ -21,7 +21,7 @@ print('        121 Supermarket POS\nInventory:')
 for row in range(number_of_items):
     if row==cursor:print('%-20s    $%3s'%('<'+inventory.loc[row,'Name']+'>',inventory.loc[row,'Price']))
     else:print('%-20s    $%3s'%(' '+inventory.loc[row,'Name']+' ',inventory.loc[row,'Price']))
-print('\n\n↑ ↓ Select Item        Space Bar To Select         Tab Switch to Shopping Cart        Esc To Exit')
+print('\n\n↑ ↓ W S Select Item        Space Bar To Select         Tab Switch to Shopping Cart        Esc To Exit')
 while True:
     choice=msvcrt.getch()
     if choice==b'\xe0':choice=msvcrt.getch()
@@ -56,10 +56,10 @@ while True:
     for row in range(number_of_items):
         if row==cursor and not tab:print('%-20s    $%3s'%('<'+inventory.loc[row,'Name']+'>',inventory.loc[row,'Price']))
         else:print('%-20s    $%3s'%(' '+inventory.loc[row,'Name']+' ',inventory.loc[row,'Price']))
-    if not cart:print('\n\n↑ ↓ Select Item        Space Bar To Select          Tab Switch to Shopping Cart        Esc To Exit')
+    if not cart:print('\n\n↑ ↓ W S Select Item        Space Bar To Select          Tab Switch to Shopping Cart        Esc To Exit')
     else:
         print('\n\n%-17sTotal: $%3d'%('Shopping Cart:',sum(cred)))
         for row in range(len(cart)):
             if row==cursor and tab:print('%-20s    $%3s'%('<'+cart[row]+'>',cred[row]))
             else:print('%-20s    $%3s'%(' '+cart[row]+' ',cred[row]))
-        print('\n\n↑ ↓ Select Item        Space Bar To Unselect        Tab Switch to Shopping Cart        Esc To Exit       Enter To Check Out')
+        print('\n\n↑ ↓ W S Select Item        Space Bar To Unselect        Tab Switch to Shopping Cart        Esc To Exit       Enter To Check Out')
