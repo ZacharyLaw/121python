@@ -1,3 +1,10 @@
+"""
+Filename: pos.py
+Author: Law Hong Chun Zachary
+Date: 10/5/2020
+
+Description: This program features as a supermarket POS system by input inventory records and output a receipt
+"""
 import csv
 import pandas as pd
 import msvcrt
