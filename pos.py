@@ -17,17 +17,21 @@ class pos:
     def memeberlogin():
         while True:
             _ = system('cls') 
-            staffid=input('Enter membership id: ')
-            staffpw=input('Enter membership password: ')
-            if not role.query('Staff_ID==@staffid and Pw==@staffpw').empty:return 'Member '+staffid
-            else:print('Error: Wrong membership id or membership password')
+            memberid=input('Enter membership id: ')
+            memberpw=input('Enter membership password: ')
+            if not role.query('Staff_ID==@memberid and Pw==@memberpw').empty:return 'Member '+memberid
+            else:
+                _ = system('cls') 
+                print('Error: Wrong membership id or membership password')
     def stafflogin():
         while True:
             _ = system('cls') 
-            memberid=input('Enter staff id: ')
-            memberpw=input('Enter staff password: ')
-            if not role.query('Staff_ID==@memberid and Pw==@memberpw').empty:return 'Staff '+memberid
-            else:print('Error: Wrong staff id or staff password')
+            staffid=input('Enter staff id: ')
+            staffpw=input('Enter staff password: ')
+            if not role.query('Staff_ID==@staffid and Pw==@staffpw').empty:return 'Staff '+staffid
+            else:
+                _ = system('cls') 
+                print('Error: Wrong staff id or staff password')
             
     def shoppingcart(role):
         cart=[]#shopping cart item
@@ -62,7 +66,8 @@ class pos:
             elif choice == b'\r' and len(cart)!=0:
                 print('         121 Supermarket\n  83 Tat Chee Ave, Kowloon Tong\n   New Territories, Hong Kong\nCasher: '+role+'    '+str(datetime.now().strftime('%y/%m/%d %H:%M')))
                 for x in range(len(cart)):print('   %-20s %5d'%(cart[x],cred[x]))
-                print('   Total:                 $'+str(sum(cred))+'\n      Have a nice day!\n\n\nEsc Enter To return')
+                if role.startswith('Member'):print('   Membership Discount:                 90%\n   Total:                 $'+str(sum(cred)*0.9)+'\n      Have a nice day!\n\n\nEsc Enter To return')
+                else:print('   Total:                 $'+str(sum(cred))+'\n      Have a nice day!\n\n\nEsc Enter To return')
                 while True:
                     choice=msvcrt.getch()
                     if choice in [b'\r',b'\x1b']:
