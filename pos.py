@@ -32,7 +32,7 @@ class pos:
             else:
                 _ = system('cls') 
                 print('Error: Wrong staff id or staff password')
-            ``
+            
     def shoppingcart(role):
         cart=[]#shopping cart item
         cred=[]#shopping cart price
