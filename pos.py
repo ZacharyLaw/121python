@@ -66,7 +66,7 @@ class pos:
             elif choice == b'\r' and len(cart)!=0:
                 print('         121 Supermarket\n  83 Tat Chee Ave, Kowloon Tong\n   New Territories, Hong Kong\nCasher: '+role+'    '+str(datetime.now().strftime('%y/%m/%d %H:%M')))
                 for x in range(len(cart)):print('   %-20s %5d'%(cart[x],cred[x]))
-                if role.startswith('Member'):print('   Membership Discount:         90%\n   Total:                 $'+str(sum(cred)*0.9)+'\n      Have a nice day!\n\n\nEsc Enter To return')
+                if role.startswith('Member'):print('   Membership Discount:   90%\n   Total:                 $'+str(round(sum(cred)*0.9,2))+'\n      Have a nice day!\n\n\nEsc Enter To return')
                 else:print('   Total:                 $'+str(sum(cred))+'\n      Have a nice day!\n\n\nEsc Enter To return')
                 while True:
                     choice=msvcrt.getch()
