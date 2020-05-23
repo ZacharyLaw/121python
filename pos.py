@@ -19,7 +19,7 @@ class pos:
         while True:
             memberid=input('Enter membership id: ')
             memberpw=input('Enter membership password: ')
-            if not role.query('Member_ID==@memberid and Pw==@memberpw').empty:return 'Member '+memberid
+            if not rolepd.query('Member_ID==@memberid and Pw==@memberpw').empty:return 'Member '+memberid
             else:
                 _ = system('cls') 
                 print('Error: Wrong membership id or membership password')
@@ -28,7 +28,7 @@ class pos:
         while True:
             staffid=input('Enter staff id: ')
             staffpw=input('Enter staff password: ')
-            if not role.query('Staff_ID==@staffid and Pw==@staffpw').empty:return 'Staff '+staffid
+            if not rolepd.query('Staff_ID==@staffid and Pw==@staffpw').empty:return 'Staff '+staffid
             else:
                 _ = system('cls') 
                 print('Error: Wrong staff id or staff password')
@@ -44,7 +44,7 @@ class pos:
         for row in range(number_of_items):
             if row==cursor:print('%-20s    $%3s'%('<'+inventory.loc[row,'Name']+'>',inventory.loc[row,'Price']))
             else:print('%-20s    $%3s'%(' '+inventory.loc[row,'Name']+' ',inventory.loc[row,'Price']))
-        print('\n\n↑ ↓ W S Select Item        Space Bar To Select \nTab Switch to Shopping Cart        Esc To Logout')
+        print('\n↑ ↓ W S Select Item        Space Bar To Select \nTab Switch to Shopping Cart        Esc To Logout')
         while True:
             choice=msvcrt.getch()
             if choice==b'\xe0':choice=msvcrt.getch()
@@ -80,22 +80,22 @@ class pos:
             for row in range(number_of_items):
                 if row==cursor and not tab:print('%-20s    $%3s'%('<'+inventory.loc[row,'Name']+'>',inventory.loc[row,'Price']))
                 else:print('%-20s    $%3s'%(' '+inventory.loc[row,'Name']+' ',inventory.loc[row,'Price']))
-            if not cart:print('\n\n↑ ↓ W S Select Item        Space Bar To Select  \nTab Switch to Shopping Cart        Esc To Exit')
+            if not cart:print('\n↑ ↓ W S Select Item        Space Bar To Select  \nTab Switch to Shopping Cart        Esc To Exit')
             else:
-                print('\n\n%-17sTotal: $%3d'%('Shopping Cart:',sum(cred)))
+                print('\n%-17sTotal: $%3d'%('Shopping Cart:',sum(cred)))
                 for row in range(len(cart)):
                     if row==cursor and tab:print('%-20s    $%3s'%('<'+cart[row]+'>',cred[row]))
                     else:print('%-20s    $%3s'%(' '+cart[row]+' ',cred[row]))
-                print('\n\n↑ ↓ W S Select Item        Space Bar To Unselect\nTab Switch to Shopping Cart        Esc To Exit       Enter To Check Out')
+                print('\n↑ ↓ W S Select Item        Space Bar To Unselect\nTab Switch to Shopping Cart        Esc To Exit\nEnter To Check Out')
 try:inventory= pd.read_csv(sys.argv[1])
 except IndexError:
     try:inventory= pd.read_csv('inventory.csv')
     except:
         print('Error: Inventory File not found')
         sys.exit()
-try:role= pd.read_csv(sys.argv[2])
+try:rolepd= pd.read_csv(sys.argv[2])
 except IndexError:
-    try:role=pd.read_csv('role.csv')
+    try:rolepd=pd.read_csv('role.csv')
     except:
         print('Error: Role File not found')
         sys.exit()
