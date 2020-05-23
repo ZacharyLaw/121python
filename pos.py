@@ -65,7 +65,7 @@ class pos:
                 print('   Total:                 $'+str(sum(cred))+'\n      Have a nice day!\n\n\nEsc Enter To return')
                 while True:
                     choice=msvcrt.getch()
-                    if choice==b'\r':
+                    if choice in [b'\r',b'\x1b']:
                         cart=[]
                         cred=[]
                         _ = system('cls') 
@@ -96,10 +96,11 @@ except IndexError:
         sys.exit()
 while True:
     _ = system('cls') 
-    print('Enter role:\n1. Guest\n2. Supermarket Memebership\n3. Staff\n\nEsc To Exit')
+    print('Enter role:\n1 or any key    Guest\n2.              Supermarket Memebership\n3.              Staff\n\nEsc To Exit')
     choice=msvcrt.getch()
     if choice==b'1':role='Guest' 
-    if choice==b'2':role=pos.memeberlogin()
-    if choice==b'3':role=pos.stafflogin()
+    elif choice==b'2':role=pos.memeberlogin()
+    elif choice==b'3':role=pos.stafflogin()
     elif choice ==b'q' or choice == b"\x1b":break
+    else:role='Guest'
     pos.shoppingcart(role)
