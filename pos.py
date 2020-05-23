@@ -19,7 +19,7 @@ class pos:
             _ = system('cls') 
             memberid=input('Enter membership id: ')
             memberpw=input('Enter membership password: ')
-            if not role.query('Staff_ID==@memberid and Pw==@memberpw').empty:return 'Member '+memberid
+            if not role.query('Member_ID==@memberid and Pw==@memberpw').empty:return 'Member '+memberid
             else:
                 _ = system('cls') 
                 print('Error: Wrong membership id or membership password')
@@ -32,7 +32,7 @@ class pos:
             else:
                 _ = system('cls') 
                 print('Error: Wrong staff id or staff password')
-            
+            ``
     def shoppingcart(role):
         cart=[]#shopping cart item
         cred=[]#shopping cart price
